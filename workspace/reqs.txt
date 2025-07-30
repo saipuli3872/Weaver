@@ -1,0 +1,3 @@
+Project Name: Project Chimera
+Objective: Develop a technical proposal for our new AI-driven data analysis platform.
+Key Deliverable: A 2-page technical proposal document.

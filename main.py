@@ -1,4 +1,4 @@
-# main.py (Week 2 - Robust Tool Parsing Fix)
+# main.py (Week 3 - Robust Tool Parsing Fix)---Final code ready for the Demo
 
 import google.generativeai as genai
 from config import GEMINI_API_KEY
@@ -141,10 +141,12 @@ def main():
             print("AI is thinking about the tool result...")
             # This is the corrected block
             tool_feedback_prompt = (
-                f"I have used the tool '{tool_call.get('tool_name')}' for you. "
-                f"The result was: '{tool_result}'. "
-                "Now, what is the next step? Do you need to use another tool, or can you give the final answer?"
-            )           
+                f"Your original request was: '{user_input}'\n\n"
+                f"You just used the tool '{tool_call.get('tool_name')}' and the result was: '{tool_result}'.\n\n"
+                "Analyze this result in the context of your original request. "
+                "If the original request is now complete, provide a final, concise answer to the user confirming the task is done. "
+                "Otherwise, what is the next single tool you need to use? Respond with ONLY the JSON for that tool call."
+            )
             print(f"--- [TOOL FEEDBACK PROMPT]\n{tool_feedback_prompt}\n--------------------------")
             response = model.generate_content(tool_feedback_prompt)
             ai_response_text = response.text
